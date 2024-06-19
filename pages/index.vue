@@ -53,18 +53,21 @@ import { useRouter } from "vue-router";
 const tasksStore = useTasksStore();
 const router = useRouter();
 
+// get all tasks from store
 const tasks = computed(() => tasksStore.getTasks);
+// go to add task page
 const navigateToAddTask = () => {
   router.push("/add-task");
 };
 
+// toggle between completed and incomplete status
 const markAsCompleted = (id: number) => {
   const task = tasksStore.getTaskById(id);
   if (task) {
     tasksStore.updateTask({ ...task, completed: !task.completed });
   }
 };
-
+// delete tasks
 const deleteTask = (id: number) => {
   tasksStore.deleteTask(id);
 };

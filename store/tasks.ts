@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+//  Defining the type of Task.... 
+
 export interface Task {
   id: number;
   title: string;
@@ -7,6 +9,7 @@ export interface Task {
   completed: boolean;
 }
 
+// Creating the Task Store
 export const useTasksStore = defineStore("tasks", {
   state: () => ({
     tasks: [] as Task[],
@@ -20,6 +23,7 @@ export const useTasksStore = defineStore("tasks", {
       return state.tasks.find((task) => task.id === id);
     },
   },
+  // Actions to get, delete and update Tasks
   actions: {
     addTask(newTask: Omit<Task, "id" | "completed">) {
       this.tasks.push({ ...newTask, id: this.nextId++, completed: false });

@@ -6,7 +6,4 @@ export default defineNuxtConfig({
   build: {
     transpile: ["bootstrap"],
   },
-  generate: {
-    fallback: true, // Enable fallback for dynamic routes
-  },
 });

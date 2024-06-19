@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <div class="card  p-4">
+    <div class="card p-4">
       <h2 class="text-primary mb-4">Task Details</h2>
       <div v-if="task">
         <form @submit.prevent="updateTask">
@@ -52,14 +52,19 @@ const route = useRoute();
 const router = useRouter();
 const tasksStore = useTasksStore();
 
+//Getting the current task
 const task = ref<Task | undefined>();
+// extracting task ID from route params
 const taskId = computed(() => parseInt(route.params.id as string, 10));
 
+// Fetch and assign the task object based on taskId.
 task.value = tasksStore.getTaskById(taskId.value);
-
+// Function to update the task
 const updateTask = () => {
   if (task.value) {
+    // update task
     tasksStore.updateTask(task.value);
+    // Redirect to home page after updating task
     router.push("/");
   }
 };
