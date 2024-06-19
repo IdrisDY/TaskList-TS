@@ -27,8 +27,15 @@
                   class="form-control"
                   required
                 ></textarea>
+                <div v-if="descriptionError" class="text-danger">
+                  {{ descriptionError }}
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary w-100">
+              <button
+                type="submit"
+                class="btn btn-primary w-100"
+                :disabled="disabled"
+              >
                 Add Task
               </button>
             </form>
@@ -40,22 +47,51 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useTasksStore } from "~/store/tasks";
 import { type Task } from "~/utils/types/Task";
 
 const title = ref("");
 const description = ref("");
+const disabled = ref(true);
+const descriptionError = ref("");
+
 const tasksStore = useTasksStore();
 const router = useRouter();
 
+const isValid = (input: string) => {
+  return input.trim().split(/\s+/).length >= 3;
+};
+
+watch(description, (newDescription) => {
+  if (!isValid(newDescription)) {
+    descriptionError.value = "Description must contain at least 3 words.";
+  } else {
+    descriptionError.value = "";
+  }
+});
+watch(
+  [title, description, descriptionError],
+  ([newTitle, newDescription, newDescriptionError]) => {
+    if (
+      newTitle !== "" &&
+      newDescriptionError === "" &&
+      newDescription !== ""
+    ) {
+      disabled.value = false;
+    }
+  }
+);
 const submitForm = () => {
+  if (descriptionError.value) {
+    console.log('error')
+    return;
+  }
+
   tasksStore.addTask({ title: title.value, description: description.value });
   router.push("/");
 };
 </script>
 
-<style scoped>
-/* Add any custom styles here */
-</style>
+<style scoped></style>

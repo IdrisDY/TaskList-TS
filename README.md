@@ -1,75 +1,69 @@
-# Nuxt 3 Minimal Starter
+# Task Management App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a task management app built with Nuxt 3, TypeScript, Pinia, and Bootstrap.
 
-## Setup
+## Table of Contents
 
-Make sure to install the dependencies:
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Testing](#testing)
 
-```bash
-# npm
-npm install
+## Features
 
-# pnpm
-pnpm install
+- Add new tasks with a title and description.
+- Validate task descriptions to ensure they contain at least 3 words.
+- Disable the "Add Task" button until the form is correctly filled.
+- Store task data using Pinia.
+- View Task details.
+- Update tasks details.
 
-# yarn
-yarn install
+## Installation
 
-# bun
-bun install
-```
+To get started with the project, follow these steps:
 
-## Development Server
+1. **Clone the repository**:
 
-Start the development server on `http://localhost:3000`:
+   ```bash
+   git clone [https://github.com/your-username/task-management-app.git](https://github.com/IdrisDY/TaskList-TS.git)
+   cd task-app
+   ```
 
-```bash
-# npm
-npm run dev
+2. **Install dependencies**:
 
-# pnpm
-pnpm run dev
+   ```bash
+   npm install
+   ```
 
-# yarn
-yarn dev
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-# bun
-bun run dev
-```
+## Usage
 
-## Production
+1. Open your browser and navigate to `http://localhost:3000`.
+2. You will see a button to add a new task and your current existing tasks if any.
+3. Enter the title and description for the task.
+4. Click the "Add Task" button to add the task to the list.
 
-Build the application for production:
+### Form Validation
 
-```bash
-# npm
-npm run build
+- The "Add Task" button is disabled until the title is not empty and the description contains at least 3 words.
 
-# pnpm
-pnpm run build
+## Testing
 
-# yarn
-yarn build
+### Unit Tests
 
-# bun
-bun run build
-```
+This project includes unit tests for the Pinia store using Vitest. To run the tests:
 
-Locally preview production build:
+1. **Install Vitest**:
 
-```bash
-# npm
-npm run preview
+   ```bash
+   npm install vitest
+   ```
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+2. **Run the tests**:
+   ```bash
+   npm run test
+   ```
